@@ -3,6 +3,7 @@ package com.example.demo1;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
+import java.io.IOException;
 import java.sql.*;
 
 public class HelloController {
@@ -27,6 +28,11 @@ public class HelloController {
                 System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+rs.getString(3));
             con.close();
         }catch(Exception e){ System.out.println(e);}
+    }
+
+    @FXML
+    private void switchToSecondePage() throws IOException {
+        HelloApplication.setRoot("page2-view");
     }
 
 }
