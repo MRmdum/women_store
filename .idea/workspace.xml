@@ -5,10 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f0a22eb4-4d8b-44f6-9d88-77d5e5a330a7" name="Changes" comment="first commit">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo1/Page2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/demo1/page2-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/8dafe54e-0479-498c-8b9a-fb6242c01fc1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/8dafe54e-0479-498c-8b9a-fb6242c01fc1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo1/HelloApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo1/HelloController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -44,9 +44,9 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "louis-branch-01",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "D:/Users/33695/Desktop/ESILV/Cours/A4/Java/Projects/JavaFx/demo1/lib/mysql-connector-j-8.2.0.jar",
+    "last_opened_file_path": "C:/Users/Louis Bessard/Documents/ESILV/S7/OOD/StudentFX",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -74,6 +74,7 @@
       <workItem from="1700926873403" duration="1458000" />
       <workItem from="1700942240675" duration="247000" />
       <workItem from="1701266448110" duration="4817000" />
+      <workItem from="1701354876094" duration="2311000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />

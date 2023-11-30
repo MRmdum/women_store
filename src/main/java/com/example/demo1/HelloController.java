@@ -20,7 +20,7 @@ public class HelloController {
         try{
             Class.forName("com.mysql.jdbc.Driver");
             Connection con=DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/women_store","root","root");
+                    "jdbc:mysql://localhost:3306/women_store?serverTimezone=Europe%2FParis","root","Password01");
 //here sonoo is database name, root is username and password
             Statement stmt=con.createStatement();
             ResultSet rs=stmt.executeQuery("select * from produit");
