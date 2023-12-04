@@ -1,5 +1,6 @@
 package com.example.demo1;
 
+import com.example.demo1.Vetements.Vetement;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
@@ -20,7 +21,7 @@ public class HelloController {
         try{
             Class.forName("com.mysql.jdbc.Driver");
             Connection con=DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/women_store","root","root");
+                    "jdbc:mysql://localhost:3306/women_store?serverTimezone=Europe%2FParis","root","root");
 //here sonoo is database name, root is username and password
             Statement stmt=con.createStatement();
             ResultSet rs=stmt.executeQuery("select * from produit");
@@ -28,6 +29,12 @@ public class HelloController {
                 System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+rs.getString(3));
             con.close();
         }catch(Exception e){ System.out.println(e);}
+    }
+
+    @FXML
+    protected void CallVetement(){
+        Vetement a = new Vetement("test",10.3,2,52);
+        System.out.println(a);
     }
 
     @FXML

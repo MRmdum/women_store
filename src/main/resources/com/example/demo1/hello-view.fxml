@@ -13,5 +13,6 @@
    <Button mnemonicParsing="false" onAction="#switchToSecondePage" text="Page2" />
 
     <Label fx:id="welcomeText" />
+   <Button mnemonicParsing="false" onAction="#CallVetement" text="createVemetement" />
     <Button onAction="#onHelloButtonClick" text="Hello!" />
 </VBox>
