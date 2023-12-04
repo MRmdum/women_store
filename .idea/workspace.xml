@@ -4,12 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f0a22eb4-4d8b-44f6-9d88-77d5e5a330a7" name="Changes" comment="changement de page fonctionnel">
+    <list default="true" id="f0a22eb4-4d8b-44f6-9d88-77d5e5a330a7" name="Changes" comment="ajout classes produit &amp; retouche lien bdd">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo1/PageVente.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/demo1/pagevente-view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/8dafe54e-0479-498c-8b9a-fb6242c01fc1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/8dafe54e-0479-498c-8b9a-fb6242c01fc1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo1/HelloApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo1/HelloController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/Page2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo1/Page2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/demo1/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/demo1/hello-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/demo1/page2-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/demo1/page2-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +78,7 @@
       <workItem from="1700926873403" duration="1458000" />
       <workItem from="1700942240675" duration="247000" />
       <workItem from="1701266448110" duration="4981000" />
-      <workItem from="1701702735941" duration="1607000" />
+      <workItem from="1701702735941" duration="6585000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -92,7 +96,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701271785091</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="ajout classes produit &amp; retouche lien bdd">
+      <option name="closed" value="true" />
+      <created>1701704677154</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1701704677154</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -101,7 +113,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first commit" />
     <MESSAGE value="changement de page fonctionnel" />
-    <option name="LAST_COMMIT_MESSAGE" value="changement de page fonctionnel" />
+    <MESSAGE value="ajout classes produit &amp; retouche lien bdd" />
+    <option name="LAST_COMMIT_MESSAGE" value="ajout classes produit &amp; retouche lien bdd" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

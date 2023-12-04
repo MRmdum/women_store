@@ -41,5 +41,13 @@ public class HelloController {
     private void switchToSecondePage() throws IOException {
         HelloApplication.setRoot("page2-view");
     }
+    @FXML
+    private void switchToVente() throws IOException {
+        HelloApplication.setRoot("pagevente-view");
+    }
+    @FXML
+    private void switchToMain() throws IOException {
+        HelloApplication.setRoot("hello-view");
+    }
 
 }

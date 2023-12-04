@@ -6,8 +6,11 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class Page2 extends Application {
+public class PageVente extends Application {
 
+    public static void main(String[] args) {
+        launch(args);
+    }
 
     @Override
     public void start(Stage primaryStage) {
@@ -25,6 +28,4 @@ public class Page2 extends Application {
     private void switchToMain() throws IOException {
         HelloApplication.setRoot("page2-view");
     }
-
-
 }
