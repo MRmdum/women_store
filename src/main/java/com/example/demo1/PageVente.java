@@ -16,16 +16,17 @@ public class PageVente extends Application {
     public void start(Stage primaryStage) {
 
     }
+
     @FXML
     private void switchToSecondePage() throws IOException {
         HelloApplication.setRoot("page2-view");
     }
     @FXML
     private void switchToVente() throws IOException {
-        HelloApplication.setRoot("page2-view");
+        HelloApplication.setRoot("hello-view");
     }
     @FXML
     private void switchToMain() throws IOException {
-        HelloApplication.setRoot("page2-view");
+        HelloApplication.setRoot("pagevente-view");
     }
 }
