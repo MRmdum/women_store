@@ -55,7 +55,7 @@ public class Page2 extends Application {
         var row =  tableview.getSelectionModel().getSelectedItems().get(0);
         var row_val = row.toString().replace("[","").replace("]","").replace(" ","").split(",");
 
-        var row_eval = new GeneralUtils().isInt(row_val[0]) ? Double.parseDouble(row_val[0]) : row_val[0];
+        var row_eval = new GeneralUtils().isInt(row_val[0]) ? Integer.parseInt(row_val[0]) : row_val[0];
         System.out.println("rowIndex " + rowIndex+" /colIndex "+colIndex+
                 " /val "+ val+" /row "+row+" /row0 "+ row_eval);
     }
