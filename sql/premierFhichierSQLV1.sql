@@ -14,7 +14,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema women_store
 -- -----------------------------------------------------
-Drop schema women_store;
+drop schema if exists `women_store` ;
 CREATE SCHEMA IF NOT EXISTS `women_store` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 USE `women_store` ;
 
@@ -33,25 +33,6 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `women_store`.`commande`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `women_store`.`commande` (
-  `id_commande` INT NOT NULL AUTO_INCREMENT,
-  `id_client` INT NOT NULL,
-  `date_commande` DATE NOT NULL,
-  PRIMARY KEY (`id_commande`),
-  INDEX `fk_client_idx` (`id_client` ASC) VISIBLE,
-  CONSTRAINT `fk_client`
-    FOREIGN KEY (`id_client`)
-    REFERENCES `women_store`.`client` (`id_client`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
 -- Table `women_store`.`produit`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `women_store`.`produit` (
@@ -62,52 +43,23 @@ CREATE TABLE IF NOT EXISTS `women_store`.`produit` (
   `Stock` INT NOT NULL,
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 7
+AUTO_INCREMENT = 13
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
-
 -- -----------------------------------------------------
--- Table `women_store`.`produit_vendu`
+-- Table `women_store`.`Commande`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `women_store`.`produit_vendu` (
-  `Id_vendu` INT NOT NULL AUTO_INCREMENT,
-  `Id_produit` INT NOT NULL,
-  `reduc_appliquee` INT NULL DEFAULT '0',
-  PRIMARY KEY (`Id_vendu`),
-  INDEX `fk_produit_idx` (`Id_produit` ASC) VISIBLE,
-  CONSTRAINT `fk_produit`
-    FOREIGN KEY (`Id_produit`)
-    REFERENCES `women_store`.`produit` (`Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+CREATE TABLE IF NOT EXISTS `women_store`.`Commande` (
+  `Id_commande` INT NOT NULL AUTO_INCREMENT,
+  `Type_produit` VARCHAR(255) NOT NULL,
+  `reduc_appliquee` DECIMAL(10,0) NULL DEFAULT '0',
+  `Id_client` INT NULL,
+  `quantite` INT NOT NULL,
+  `prix_vendu_unite` DECIMAL NULL,
+  PRIMARY KEY (`Id_commande`))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
--- Table `women_store`.`produits_dans_commande`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `women_store`.`produits_dans_commande` (
-  `id_produits_dans_commande` INT NOT NULL AUTO_INCREMENT,
-  `id_produit1` INT NOT NULL,
-  `id_command` INT NOT NULL,
-  `reduc_appliquee` INT NULL DEFAULT '0',
-  PRIMARY KEY (`id_produits_dans_commande`),
-  INDEX `fk_commande_idx` (`id_command` ASC) VISIBLE,
-  INDEX `fk_produit_commandé_idx` (`id_produit1` ASC) VISIBLE,
-  CONSTRAINT `fk_commande`
-    FOREIGN KEY (`id_command`)
-    REFERENCES `women_store`.`commande` (`id_commande`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_produit_commandé`
-    FOREIGN KEY (`id_produit1`)
-    REFERENCES `women_store`.`produit_vendu` (`Id_vendu`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
+AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -115,6 +67,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
 
 -- --- Remplissage --- --
 INSERT INTO produit (Categorie,Taille, Prix, Stock) VALUES
@@ -127,6 +80,7 @@ INSERT INTO produit (Categorie, Prix, Stock) VALUES
 ('Accesoire',12,8),
 ('Accesoire',10,3);
 
-INSERT INTO produit_vendu (Id_produit,reduc_appliquee) values
-(7,0),
-(8,5);
+Insert into commande(Type_produit,quantite,prix_vendu_unite) values
+('Chaussure',5,15),
+('Accesoire',3,120),
+('Vêtement',5,1);

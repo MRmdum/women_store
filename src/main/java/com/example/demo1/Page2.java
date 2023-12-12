@@ -5,6 +5,8 @@ import com.example.demo1.sqlOperation.MysqlInterface;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
@@ -25,6 +27,7 @@ public class Page2 extends Application {
     protected void initialize(){
 
         tableview.getItems().clear();
+
         TableView temp = new MysqlInterface().ReadData("Select * from produit");
         tableview.getColumns().addAll(temp.getColumns());
         tableview.setItems(temp.getItems());
@@ -45,19 +48,48 @@ public class Page2 extends Application {
     @FXML
     private void tableviewSelect(){
 
-        TableView.TableViewSelectionModel selectionModel = tableview.getSelectionModel();
-        ObservableList selectedCells = selectionModel.getSelectedCells();
-        TablePosition tablePosition = (TablePosition) selectedCells.get(0);
-        int colIndex = tableview.getColumns().indexOf(tableview.getFocusModel().getFocusedCell().getTableColumn());
-        int rowIndex = tableview.getSelectionModel().getSelectedIndex();
-
-        Object val = tablePosition.getTableColumn().getCellData(rowIndex);
-        var row =  tableview.getSelectionModel().getSelectedItems().get(0);
-        var row_val = row.toString().replace("[","").replace("]","").replace(" ","").split(",");
+        var row_val = new GeneralUtils().getRowSelected2StrArray(tableview);
 
         var row_eval = new GeneralUtils().isInt(row_val[0]) ? Integer.parseInt(row_val[0]) : row_val[0];
-        System.out.println("rowIndex " + rowIndex+" /colIndex "+colIndex+
-                " /val "+ val+" /row "+row+" /row0 "+ row_eval);
+        System.out.println(" /row0 "+ row_eval);
+
+    }
+    @FXML
+    private void SupprimerStock(){
+
+        var row_val = new GeneralUtils().getRowSelected2StrArray(tableview);
+        new MysqlInterface().WriteData("Delete from produit where Id ="+row_val[0]+";");
+
+        Alert a = new Alert(Alert.AlertType.INFORMATION,"Row has been deleted");
+        a.show();
+
+        initialize();
+    }
+    @FXML
+    private void SupprimeItem() throws IOException{
+        var row_val = new GeneralUtils().getRowSelected2StrArray(tableview);
+        var stock = row_val[4];
+        if(stock != null){
+            if (Integer.parseInt(stock) > 0) {
+                new MysqlInterface().WriteData("Update produit set Stock = Stock-1 where Id =" + row_val[0] + ";");
+                switchToSecondePage();
+            } else {
+                Alert a = new Alert(Alert.AlertType.WARNING, "Not enough stock to delete item");
+                a.show();
+            }
+        }
+
+
+    }
+    @FXML
+    private void AddItem() throws IOException{
+        var row_val = new GeneralUtils().getRowSelected2StrArray(tableview);
+        var stock = row_val[4];
+        if(stock != null){
+            new MysqlInterface().WriteData("Update produit set Stock = Stock+1 where Id =" + row_val[0] + ";");
+            switchToSecondePage();
+        }
+
     }
 
 }

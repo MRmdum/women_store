@@ -7,6 +7,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
 import java.sql.*;
+import java.util.List;
 
 public class MysqlInterface {
     String jdbcURL = "jdbc:mysql://localhost:3306/women_store?serverTimezone=Europe%2FParis";
@@ -65,7 +66,7 @@ public class MysqlInterface {
                     jdbcURL, user, pwd);
 //here sonoo is database name, root is username and password
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery(command);
+            stmt.executeUpdate(command);
         }catch(Exception e){ System.out.println(e);}
     }
 }

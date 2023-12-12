@@ -15,14 +15,23 @@
                   <Button layoutX="22.0" layoutY="7.0" mnemonicParsing="false" onAction="#switchToMain" prefHeight="30.0" prefWidth="248.0" text="Menu" />
                   <Button layoutX="286.0" layoutY="7.0" mnemonicParsing="false" onAction="#switchToSecondePage" prefHeight="30.0" prefWidth="247.0" text="Stock" />
                   <Button layoutX="548.0" layoutY="7.0" mnemonicParsing="false" onAction="#switchToVente" prefHeight="30.0" prefWidth="272.0" text="Vente" />
+                  <Text layoutX="6.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stock" wrappingWidth="35.811481952667236" />
                </children>
             </AnchorPane>
          </top>
          <center>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Stock" wrappingWidth="35.811481952667236" BorderPane.alignment="CENTER" />
+            <AnchorPane prefHeight="111.0" prefWidth="820.0" BorderPane.alignment="CENTER" />
          </center>
          <bottom>
-            <TableView fx:id="tableview" onMouseClicked="#tableviewSelect" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+            <AnchorPane prefHeight="202.0" prefWidth="820.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TableView fx:id="tableview" layoutX="145.0" layoutY="107.0" prefHeight="166.0" prefWidth="530.0" />
+                  <Button layoutX="-6.0" layoutY="215.0" mnemonicParsing="false" onAction="#SupprimerStock" text="Supprimer Stock entier" />
+                  <Button layoutX="13.0" layoutY="124.0" mnemonicParsing="false" onAction="#SupprimeItem" text="Supprimer Item" />
+                  <Button layoutX="699.0" layoutY="124.0" mnemonicParsing="false" onAction="#AddItem" text="Add Item" />
+                  <Button layoutX="697.0" layoutY="47.0" mnemonicParsing="false" text="Add Stock" />
+               </children>
+            </AnchorPane>
          </bottom>
       </BorderPane>
    </children>
