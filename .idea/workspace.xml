@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f0a22eb4-4d8b-44f6-9d88-77d5e5a330a7" name="Changes" comment="Get value from tableview">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/premierFhichierSQLV1.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/premierFhichierSQLV1.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/Page2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo1/Page2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/sqlOperation/GeneralUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo1/sqlOperation/GeneralUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/sqlOperation/MysqlInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo1/sqlOperation/MysqlInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/demo1/page2-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/demo1/page2-view.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="f0a22eb4-4d8b-44f6-9d88-77d5e5a330a7" name="Changes" comment="Edit value in tableview" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -93,7 +86,7 @@
       <workItem from="1701266448110" duration="4981000" />
       <workItem from="1701702735941" duration="6585000" />
       <workItem from="1702040108750" duration="185000" />
-      <workItem from="1702203437343" duration="18592000" />
+      <workItem from="1702203437343" duration="18982000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -159,7 +152,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702320669648</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Edit value in tableview">
+      <option name="closed" value="true" />
+      <created>1702344702706</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1702344702706</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -183,7 +184,8 @@
     <MESSAGE value="lecture (et potentiellement écriture) bdd fonctionnelle, et affichage dans tableview + navigation fonctionnelle" />
     <MESSAGE value="bddV1" />
     <MESSAGE value="Get value from tableview" />
-    <option name="LAST_COMMIT_MESSAGE" value="Get value from tableview" />
+    <MESSAGE value="Edit value in tableview" />
+    <option name="LAST_COMMIT_MESSAGE" value="Edit value in tableview" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
