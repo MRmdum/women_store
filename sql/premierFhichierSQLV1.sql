@@ -82,5 +82,7 @@ INSERT INTO produit (Categorie, Prix, Stock) VALUES
 
 Insert into commande(Type_produit,quantite,prix_vendu_unite) values
 ('Chaussure',5,15),
-('Accesoire',3,120),
+('Accessoire',3,120),
 ('Vêtement',5,1);
+
+select * from produit;

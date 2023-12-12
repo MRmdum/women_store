@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -24,22 +25,24 @@
          <center>
             <AnchorPane prefHeight="111.0" prefWidth="820.0" BorderPane.alignment="CENTER" />
          </center>
-         <bottom>
+         <left>
             <AnchorPane prefHeight="202.0" prefWidth="820.0" BorderPane.alignment="CENTER">
                <children>
                   <TableView fx:id="tableview" layoutX="145.0" layoutY="107.0" prefHeight="166.0" prefWidth="530.0" />
                   <Button layoutX="-6.0" layoutY="215.0" mnemonicParsing="false" onAction="#SupprimerStock" text="Supprimer Stock entier" />
                   <Button layoutX="13.0" layoutY="124.0" mnemonicParsing="false" onAction="#SupprimeItem" text="Supprimer Item" />
                   <Button layoutX="699.0" layoutY="124.0" mnemonicParsing="false" onAction="#AddItem" text="Add Item" />
-                  <Button layoutX="619.0" layoutY="36.0" mnemonicParsing="false" text="Add Stock" />
-                  <ChoiceBox layoutX="36.0" layoutY="36.0" prefHeight="26.0" prefWidth="106.0" />
-                  <TextField layoutX="225.0" layoutY="36.0" prefHeight="26.0" prefWidth="45.0" />
-                  <TextField layoutX="457.0" layoutY="36.0" prefHeight="26.0" prefWidth="45.0" />
-                  <TextField layoutX="291.0" layoutY="36.0" prefHeight="26.0" prefWidth="45.0" />
-                  <TextField layoutX="374.0" layoutY="36.0" prefHeight="26.0" prefWidth="45.0" />
+                  <Button layoutX="696.0" layoutY="22.0" mnemonicParsing="false" onAction="#AddStock" text="Add Stock" />
+                  <ChoiceBox fx:id="choiceBox1" layoutX="284.0" layoutY="22.0" prefHeight="26.0" prefWidth="106.0" />
+                  <TextField fx:id="stock_field" layoutX="644.0" layoutY="22.0" prefHeight="26.0" prefWidth="45.0" />
+                  <TextField fx:id="prix_field" layoutX="436.0" layoutY="21.0" prefHeight="26.0" prefWidth="45.0" />
+                  <TextField fx:id="taille_field" layoutX="542.0" layoutY="21.0" prefHeight="26.0" prefWidth="45.0" />
+                  <Label layoutX="410.0" layoutY="26.0" prefHeight="18.0" prefWidth="26.0" text="Prix" />
+                  <Label layoutX="594.0" layoutY="25.0" prefHeight="18.0" prefWidth="49.0" text="Nombre" />
+                  <Label layoutX="500.0" layoutY="20.0" prefHeight="27.0" prefWidth="34.0" text="Taille" />
                </children>
             </AnchorPane>
-         </bottom>
+         </left>
       </BorderPane>
    </children>
 </AnchorPane>
