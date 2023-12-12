@@ -11,15 +11,23 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 public class Page2 extends Application {
 
-
+    //Data's view
     public TableView tableview;
+    private static String cmd = "Select * from produit;";
+
+    //Adding stock controls
     public ChoiceBox choiceBox1;
     public TextField stock_field;
     public TextField prix_field;
     public TextField taille_field;
+
+    //filter controls
+    public TextField filtre_taille;
+    public ComboBox comboBox1;
 
     @Override
     public void start(Stage primaryStage) {
@@ -28,12 +36,17 @@ public class Page2 extends Application {
     @FXML
     protected void initialize(){
 
-        var type_produit = new String[]{"Chaussure","Vêtement","Accesoire"};
+        System.out.println(cmd);
+
+        var type_produit = new String[]{"Chaussure","Vêtement","Accessoire"};
         choiceBox1.setItems(FXCollections.observableArrayList(type_produit));
+
+        type_produit = new String[]{"Chaussure","Vêtement","Accessoire",""};
+        comboBox1.setItems(FXCollections.observableArrayList(type_produit));
 
         tableview.getItems().clear();
 
-        TableView temp = new MysqlInterface().ReadData("Select * from produit");
+        TableView temp = new MysqlInterface().ReadData(cmd);
         tableview.getColumns().addAll(temp.getColumns());
         tableview.setItems(temp.getItems());
     }
@@ -77,7 +90,7 @@ public class Page2 extends Application {
         }
     }
     @FXML
-    private void SupprimerStock(){
+    private void SupprimerStock() throws  Exception{
 
         var row_val = new GeneralUtils().getRowSelected2StrArray(tableview);
         if(row_val != null) {
@@ -90,7 +103,7 @@ public class Page2 extends Application {
         }
     }
     @FXML
-    private void SupprimeItem() throws IOException{
+    private void SupprimeItem() throws Exception{
         var row_val = new GeneralUtils().getRowSelected2StrArray(tableview);
         var stock = row_val[4];
         if(stock != null){
@@ -102,18 +115,33 @@ public class Page2 extends Application {
                 a.show();
             }
         }
-
-
     }
     @FXML
-    private void AddItem() throws IOException{
+    private void AddItem() throws Exception{
         var row_val = new GeneralUtils().getRowSelected2StrArray(tableview);
+
         var stock = row_val[4];
+
         if(stock != null){
             new MysqlInterface().WriteData("Update produit set Stock = Stock+1 where Id =" + row_val[0] + ";");
             switchToSecondePage();
         }
+    }
+    @FXML
+    private  void filterView(){
+        var type_produit = comboBox1.getSelectionModel().getSelectedItem();
+        var taille_filtre = filtre_taille.getText();
 
+        tableview.getItems().clear();
+        tableview.getColumns().clear();
+
+        cmd = !taille_filtre.isEmpty() ? "Select * from produit where Categorie like '%"+type_produit+"%' and taille="+taille_filtre+";"
+                                            : "Select * from produit where Categorie like '%"+type_produit+"%';";
+
+        TableView temp = new MysqlInterface().ReadData(cmd);
+        tableview.getColumns().addAll(temp.getColumns());
+        tableview.setItems(temp.getItems());
+        System.out.println(cmd);
     }
 
 }

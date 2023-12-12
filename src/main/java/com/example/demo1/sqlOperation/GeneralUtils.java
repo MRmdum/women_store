@@ -31,18 +31,25 @@ public class GeneralUtils {
         return true;
     }
 
-    public String[] getRowSelected2StrArray(TableView tableview){
+    public String[] getRowSelected2StrArray(TableView tableview) throws Exception{
 
         TableView.TableViewSelectionModel selectionModel = tableview.getSelectionModel();
         ObservableList selectedCells = selectionModel.getSelectedCells();
-        TablePosition tablePosition = (TablePosition) selectedCells.get(0);
+        if (!selectedCells.isEmpty()) {
 
-//        int colIndex = tableview.getColumns().indexOf(tableview.getFocusModel().getFocusedCell().getTableColumn());
-        int rowIndex = tableview.getSelectionModel().getSelectedIndex();
+            TablePosition tablePosition = (TablePosition) selectedCells.get(0);
 
-        Object val = tablePosition.getTableColumn().getCellData(rowIndex);
-        var row =  tableview.getSelectionModel().getSelectedItems().get(0);
-        return row.toString().replace("[","").replace("]","").replace(" ","").split(",");
+    //        int colIndex = tableview.getColumns().indexOf(tableview.getFocusModel().getFocusedCell().getTableColumn());
+            //int rowIndex = tableview.getSelectionModel().getSelectedIndex();
+
+            if (tablePosition.getTableColumn() != null) {
+
+                //Object val = tablePosition.getTableColumn().getCellData(rowIndex);
+                var row =  tableview.getSelectionModel().getSelectedItems().get(0);
+                return row.toString().replace("[","").replace("]","").replace(" ","").split(",");
+            }
+        }
+        throw new Exception("Erreur Selection row selected:"+tableview.getSelectionModel().getSelectedCells());
     }
 
 }
