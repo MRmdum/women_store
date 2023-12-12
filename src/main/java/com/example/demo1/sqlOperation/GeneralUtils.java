@@ -35,6 +35,9 @@ public class GeneralUtils {
 
         TableView.TableViewSelectionModel selectionModel = tableview.getSelectionModel();
         ObservableList selectedCells = selectionModel.getSelectedCells();
+
+//        System.out.println(selectedCells);
+
         if (!selectedCells.isEmpty()) {
 
             TablePosition tablePosition = (TablePosition) selectedCells.get(0);

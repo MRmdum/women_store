@@ -73,7 +73,7 @@ public class Page2 extends Application {
         boolean allIsNum = new GeneralUtils().isInt(taille) && new GeneralUtils().isInt(stock) && new GeneralUtils().isDouble(prix);
 
         if (type_produit != null && prix!=null && (taille!=null || type_produit == "Accessoir") && stock !=null && allIsNum){
-            if(type_produit == "Accessoir"){
+            if(type_produit == "Accessoire"){
                 taille = "null";
             }
             new MysqlInterface().WriteData("Insert into produit(Categorie,Taille, Prix, Stock) values ('"

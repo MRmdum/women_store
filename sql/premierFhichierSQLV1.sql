@@ -37,7 +37,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `women_store`.`produit` (
   `Id` INT NOT NULL AUTO_INCREMENT,
-  `Categorie` ENUM('Accesoire', 'Vêtement', 'Chaussure') NULL DEFAULT NULL,
+  `Categorie` ENUM('Accessoire', 'Vêtement', 'Chaussure') NULL DEFAULT NULL,
   `Prix` DECIMAL(10,0) NOT NULL,
   `Taille` INT NULL DEFAULT NULL,
   `Stock` INT NOT NULL,
@@ -77,12 +77,12 @@ INSERT INTO produit (Categorie,Taille, Prix, Stock) VALUES
 ('Vêtement',48,12,6);
 
 INSERT INTO produit (Categorie, Prix, Stock) VALUES
-('Accesoire',12,8),
-('Accesoire',10,3);
+('Accessoire',12,8),
+('Accessoire',10,3);
 
 Insert into commande(Type_produit,quantite,prix_vendu_unite) values
 ('Chaussure',5,15),
 ('Accessoire',3,120),
 ('Vêtement',5,1);
 
-select * from produit;
+Select * from produit where Categorie like '%Chaussure%' and taille =42;
