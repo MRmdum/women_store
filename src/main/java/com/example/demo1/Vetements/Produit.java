@@ -1,6 +1,6 @@
 package com.example.demo1.Vetements;
 
-public abstract class Produit implements Solde,Comparable {
+public class Produit implements Solde,Comparable {
     String nom;
     double prix;
     int nbExamplaires;
@@ -22,7 +22,7 @@ public abstract class Produit implements Solde,Comparable {
 
     }
     String Nom() {return this.nom;}
-    double Prix() {return this.prix;}
+    public Double Prix() {return this.prix;}
     double Recette() {return Produit.recette;}
     int NbExamplaires() {return this.nbExamplaires;}
     int Numero() {return this.numero;}

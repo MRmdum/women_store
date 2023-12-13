@@ -1,13 +1,15 @@
 package com.example.demo1;
 
+import com.example.demo1.Vetements.Accessoire;
+import com.example.demo1.Vetements.Chaussure;
+import com.example.demo1.Vetements.Produit;
+import com.example.demo1.Vetements.Vetement;
 import com.example.demo1.sqlOperation.GeneralUtils;
 import com.example.demo1.sqlOperation.MysqlInterface;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -20,6 +22,8 @@ public class PageVente extends Application {
     public TextField taille_achat;
     public TextField descriptif_field;
     public TableView tableView;
+    public TextField vendre_field;
+    public CheckBox discount;
 
     public static void main(String[] args) {
         launch(args);
@@ -41,6 +45,60 @@ public class PageVente extends Application {
         tableView.getColumns().addAll(temp.getColumns());
         tableView.setItems(temp.getItems());
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+    }
+    @FXML
+    public void vendre() throws Exception {
+
+        var num_vend = vendre_field.getText();
+
+        var row_val = new GeneralUtils().getRowSelected2StrArray(tableView);
+        var stock = row_val[4];
+
+        if(stock != null && !num_vend.isEmpty()){
+            if (Integer.parseInt(stock) > 0) {
+
+                var type_produit = row_val[1];
+                var descriptif = row_val[5];
+                var prix = Double.parseDouble(row_val[2]);
+                var taille = Integer.parseInt(row_val[3]);
+
+                var produit = new Produit("",1,1);
+                var remise = 0.0;
+
+                if(discount.isSelected()){
+                    switch (type_produit){
+                        case "Accessoire":
+                            produit = new Accessoire(descriptif,prix,Integer.parseInt(num_vend));
+                            break;
+
+                        case "Chaussure":
+                            produit = new Chaussure(descriptif,prix,Integer.parseInt(num_vend),taille);
+                            break;
+
+                        case "Vêtement":
+                            produit = new Vetement(descriptif,prix,Integer.parseInt(num_vend),taille);
+                            break;
+                    }
+                    produit.remise();
+                    remise = -(produit.Prix()-prix);
+                    prix = produit.Prix();
+                }
+
+
+                new MysqlInterface().WriteData("Update produit set Stock = Stock-"+num_vend+" where Id =" + row_val[0] + ";");
+                new MysqlInterface().WriteData("Insert into Commande(Type_produit,reduc_appliquee,Id_client, quantite, Descriptif,prix_vendu_unite)"+
+                        " values ('"+type_produit+"',"+remise+","+1+
+                        ","+num_vend+",'"+ descriptif + "',"+prix+");");
+                System.out.println(remise);
+                tableView.getItems().clear();
+                tableView.getColumns().clear();
+                initialize();
+            } else {
+                Alert a = new Alert(Alert.AlertType.WARNING, "Not enough stock to delete item");
+                a.show();
+            }
+        }
+
     }
     @FXML
     public void buyNew(){
@@ -71,7 +129,7 @@ public class PageVente extends Application {
                     ","+stock+",'"+ descriptif + "',"+(-Integer.parseInt(prix))+");");
         }
 
-
+        initialize();
 
     }
 

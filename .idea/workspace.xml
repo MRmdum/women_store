@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f0a22eb4-4d8b-44f6-9d88-77d5e5a330a7" name="Changes" comment="achat presque fonctionel">
+    <list default="true" id="f0a22eb4-4d8b-44f6-9d88-77d5e5a330a7" name="Changes" comment="modif fonctionel sauf Accessoire">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/ModifPopUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo1/ModifPopUp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/demo1/modifpopup-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/demo1/modifpopup-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/premierFhichierSQLV1.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/premierFhichierSQLV1.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/PageVente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo1/PageVente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/Vetements/Produit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo1/Vetements/Produit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/demo1/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/demo1/hello-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/demo1/pagevente-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/demo1/pagevente-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +96,7 @@
       <workItem from="1702203437343" duration="19751000" />
       <workItem from="1702378676286" duration="12620000" />
       <workItem from="1702419560800" duration="8184000" />
-      <workItem from="1702463432940" duration="6881000" />
+      <workItem from="1702463432940" duration="18060000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -215,7 +218,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702470693807</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="modif fonctionel sauf Accessoire">
+      <option name="closed" value="true" />
+      <created>1702471335217</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1702471335217</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -244,7 +255,8 @@
     <MESSAGE value="filtering fonctionel" />
     <MESSAGE value="modification pas testée" />
     <MESSAGE value="achat presque fonctionel" />
-    <option name="LAST_COMMIT_MESSAGE" value="achat presque fonctionel" />
+    <MESSAGE value="modif fonctionel sauf Accessoire" />
+    <option name="LAST_COMMIT_MESSAGE" value="modif fonctionel sauf Accessoire" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
