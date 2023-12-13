@@ -22,11 +22,11 @@ public class PageVente extends Application {
         HelloApplication.setRoot("page2-view");
     }
     @FXML
-    private void switchToVente() throws IOException {
+    private void switchToMain() throws IOException {
         HelloApplication.setRoot("hello-view");
     }
     @FXML
-    private void switchToMain() throws IOException {
+    private void switchToVente() throws IOException {
         HelloApplication.setRoot("pagevente-view");
     }
 }

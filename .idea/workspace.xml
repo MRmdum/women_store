@@ -4,11 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f0a22eb4-4d8b-44f6-9d88-77d5e5a330a7" name="Changes" comment="filtering casi fonctionel&#10;MAIS bug row selection pas toujours fonctionnel">
+    <list default="true" id="f0a22eb4-4d8b-44f6-9d88-77d5e5a330a7" name="Changes" comment="filtering fonctionel">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo1/ModifPopUp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/demo1/modifpopup-view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/premierFhichierSQLV1.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/premierFhichierSQLV1.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo1/HelloApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/Page2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo1/Page2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/sqlOperation/GeneralUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo1/sqlOperation/GeneralUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/PageVente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo1/PageVente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/demo1/page2-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/demo1/page2-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,8 +22,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaFXApplication" />
-        <option value="FxmlFile" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -93,7 +96,7 @@
       <workItem from="1702040108750" duration="185000" />
       <workItem from="1702203437343" duration="19751000" />
       <workItem from="1702378676286" duration="12620000" />
-      <workItem from="1702419560800" duration="836000" />
+      <workItem from="1702419560800" duration="6353000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -191,7 +194,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702396821943</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="filtering fonctionel">
+      <option name="closed" value="true" />
+      <created>1702421577281</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1702421577281</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -217,7 +228,8 @@
     <MESSAGE value="Get value from tableview" />
     <MESSAGE value="Edit value in tableview" />
     <MESSAGE value="filtering casi fonctionel&#10;MAIS bug row selection pas toujours fonctionnel" />
-    <option name="LAST_COMMIT_MESSAGE" value="filtering casi fonctionel&#10;MAIS bug row selection pas toujours fonctionnel" />
+    <MESSAGE value="filtering fonctionel" />
+    <option name="LAST_COMMIT_MESSAGE" value="filtering fonctionel" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

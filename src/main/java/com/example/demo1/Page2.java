@@ -6,12 +6,20 @@ import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Arrays;
+
+import static com.example.demo1.HelloApplication.loadFXML;
 
 public class Page2 extends Application {
 
@@ -36,7 +44,7 @@ public class Page2 extends Application {
     @FXML
     protected void initialize(){
 
-        System.out.println(cmd);
+        //System.out.println(cmd);
 
         var type_produit = new String[]{"Chaussure","Vêtement","Accessoire"};
         choiceBox1.setItems(FXCollections.observableArrayList(type_produit));
@@ -49,6 +57,8 @@ public class Page2 extends Application {
         TableView temp = new MysqlInterface().ReadData(cmd);
         tableview.getColumns().addAll(temp.getColumns());
         tableview.setItems(temp.getItems());
+        tableview.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
     }
     @FXML
     private void switchToSecondePage() throws IOException {
@@ -142,6 +152,24 @@ public class Page2 extends Application {
         tableview.getColumns().addAll(temp.getColumns());
         tableview.setItems(temp.getItems());
         System.out.println(cmd);
+    }
+    @FXML
+    private void Modifier(ActionEvent event) throws Exception {
+        var row_val = new GeneralUtils().getRowSelected2StrArray(tableview);
+        if(!row_val[0].isEmpty()) {
+            Scene scene = new Scene(loadFXML("modifpopup-view"), 400, 200);
+            Stage stage = new Stage();
+            stage.setUserData(row_val[0]);
+
+            Stage current_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initOwner(current_stage);
+
+            stage.setScene(scene);
+            stage.show();
+        }
+
     }
 
 }

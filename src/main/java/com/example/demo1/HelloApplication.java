@@ -15,7 +15,7 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        scene = new Scene(loadFXML("hello-view"), 1024,768 );
+        scene = new Scene(loadFXML("hello-view"), 845,400 );
 
         stage.setTitle("Hello!");
 
@@ -25,7 +25,7 @@ public class HelloApplication extends Application {
     public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
-    private static Parent loadFXML(String fxml) throws IOException {
+    static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
