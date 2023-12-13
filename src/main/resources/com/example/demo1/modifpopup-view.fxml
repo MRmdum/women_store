@@ -6,10 +6,9 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo1.ModifPopUp">
    <children>
-      <Button layoutX="306.0" layoutY="145.0" mnemonicParsing="false" text="Button" />
+      <Button layoutX="306.0" layoutY="145.0" mnemonicParsing="false" onAction="#confirmer" text="Valider" />
       <TextField fx:id="prix_field" layoutX="187.0" layoutY="25.0" prefHeight="26.0" prefWidth="46.0" />
       <TextField fx:id="taille_field" layoutX="306.0" layoutY="25.0" prefHeight="26.0" prefWidth="46.0" />
       <TextField fx:id="desc_field" layoutX="306.0" layoutY="73.0" prefHeight="26.0" prefWidth="46.0" />

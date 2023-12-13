@@ -29,6 +29,7 @@ public class ModifPopUp {
         String row_id = (String) stage.getUserData();
 
         var type_produit = type_field.getSelectionModel().getSelectedItem();
+        var desc = desc_field.getText();
         var prix = prix_field.getText();
         var taille = taille_field.getText();
         var stock = stock_field.getText();
@@ -38,8 +39,9 @@ public class ModifPopUp {
             if(type_produit == "Accessoire"){
                 taille = "null";
             }
+            System.out.println(row_id);
             new MysqlInterface().WriteData("Update produit set Categorie ='"
-                    + type_produit + "',Prix="+prix+",Stock="+stock+",Taille="+taille+" where Id ="+row_id+";");
+                    + type_produit + "',Prix="+prix+",Stock="+stock+",Taille="+taille+",Descriptif='"+desc+"' where Id ="+row_id+";");
 
             Alert a = new Alert(Alert.AlertType.INFORMATION,"Stock has been added !");
             a.show();
