@@ -36,6 +36,7 @@ public class Page2 extends Application {
     //filter controls
     public TextField filtre_taille;
     public ComboBox comboBox1;
+    public TextField descriptif_field;
 
     @Override
     public void start(Stage primaryStage) {
@@ -76,13 +77,14 @@ public class Page2 extends Application {
     @FXML
     private void AddStock() throws IOException{
 
+        var descriptif = descriptif_field.getText();
         var type_produit = choiceBox1.getSelectionModel().getSelectedItem();
         var prix = prix_field.getText();
         var taille = taille_field.getText();
         var stock = stock_field.getText();
         boolean allIsNum = new GeneralUtils().isInt(taille) && new GeneralUtils().isInt(stock) && new GeneralUtils().isDouble(prix);
 
-        if (type_produit != null && prix!=null && (taille!=null || type_produit == "Accessoir") && stock !=null && allIsNum){
+        if (descriptif!= null && type_produit != null && prix!=null && (taille!=null || type_produit == "Accessoire") && stock !=null && allIsNum){
             if(type_produit == "Accessoire"){
                 taille = "null";
             }

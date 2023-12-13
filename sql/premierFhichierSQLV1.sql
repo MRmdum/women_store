@@ -41,6 +41,7 @@ CREATE TABLE IF NOT EXISTS `women_store`.`produit` (
   `Prix` DECIMAL(10,0) NOT NULL,
   `Taille` INT NULL DEFAULT NULL,
   `Stock` INT NOT NULL,
+  `Descriptif` VARCHAR(255),
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 13
@@ -86,3 +87,5 @@ Insert into commande(Type_produit,quantite,prix_vendu_unite) values
 ('Vêtement',5,1);
 
 Select * from produit where Categorie like '%Chaussure%' and taille =42;
+Select * from commande;
+Select sum(col1) from (Select sum(prix_vendu_unite)*quantite as col1 from commande group by Id_commande) as retour;
