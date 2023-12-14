@@ -88,7 +88,7 @@ public class Page2 extends Application {
         if (descriptif!= null && type_produit != null && prix!=null && (taille!=null || type_produit == "Accessoire") && stock !=null && allIsNum){
             if(Integer.parseInt(stock) >0){
                 if(type_produit == "Accessoire"){
-                    taille = "null";
+                    taille = "-1";
                 }
                 try{
                     Produit produit = new GeneralUtils().checkProduit(type_produit.toString(), descriptif, Double.parseDouble(prix), stock, Integer.parseInt(taille));
