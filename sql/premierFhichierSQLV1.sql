@@ -70,30 +70,9 @@ SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
+insert into produit (Categorie,Prix,Taille,Stock,Descriptif) values
+('Vêtement',30,40,10,'Dress1'),
+('Vêtement',40,38,20,'Dress2'),
+('Chaussure',20,40,20,'Shoes1'),
+('Chaussure',10,-1,20,'Accessory1');
 
--- --- Remplissage --- --
-INSERT INTO produit (Categorie,Taille, Prix, Stock) VALUES
-('Chaussure',42,12,5),
-('Chaussure',43,17,4),
-('Vêtement',34,8,5),
-('Vêtement',48,12,6);
-
-INSERT INTO produit (Categorie, Prix, Stock) VALUES
-('Accessoire',12,8),
-('Accessoire',10,3);
-
-Insert into commande(Type_produit,quantite,prix_vendu_unite) values
-('Chaussure',5,15),
-('Accessoire',3,120),
-('Vêtement',5,1),
-('Vêtement',1,-2000);
-
-Insert into client(nom_client,prenom_client,telephone_client) values
-('Maison','Mere','0485359696'),
-('client','premier','888888'),
-('test_client','super','777777');
-
-select * from client;
-select * from produit;
-select * from commande;
-select Commande.Type_produit,produit.Descriptif,sum(commande.prix_vendu_unite*commande.quantite) from produit,commande where produit.Descriptif = Commande.Descriptif group by produit.Descriptif;
