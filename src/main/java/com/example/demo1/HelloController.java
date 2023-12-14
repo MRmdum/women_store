@@ -14,6 +14,8 @@ public class HelloController {
     public TableView client_table;
     public TableView commande_table;
     public Label somme_label;
+    public Label depenses;
+    public Label benefices;
     @FXML
     private Label welcomeText;
     @FXML
@@ -43,10 +45,17 @@ public class HelloController {
         String cmd3 = "Select sum(col1) from (Select sum(prix_vendu_unite)*quantite as col1 from commande where prix_vendu_unite>0 group by Id_commande) as retour;";
         TableView temp3 = new MysqlInterface().ReadData(cmd3);
         var a = temp3.getItems().toArray()[0].toString().replace("[","").replace("]","");
-
         somme_label.setText(a);
 
+        String cmd4 = "Select sum(col1) from (Select sum(prix_vendu_unite)*quantite as col1 from commande where prix_vendu_unite<0 group by Id_commande) as retour;";
+        TableView temp4 = new MysqlInterface().ReadData(cmd4);
+        var b = temp4.getItems().toArray()[0].toString().replace("[","").replace("]","");
+        depenses.setText(b);
 
+        String cmd5 = "Select sum(col1) from (Select sum(prix_vendu_unite)*quantite as col1 from commande group by Id_commande) as retour;";
+        TableView temp5 = new MysqlInterface().ReadData(cmd5);
+        var c = temp5.getItems().toArray()[0].toString().replace("[","").replace("]","");
+        benefices.setText(c);
     }
     @FXML
     private void switchToSecondePage() throws IOException {
