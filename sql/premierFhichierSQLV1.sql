@@ -96,3 +96,4 @@ Insert into client(nom_client,prenom_client,telephone_client) values
 select * from client;
 select * from produit;
 select * from commande;
+select Commande.Type_produit,produit.Descriptif,sum(commande.prix_vendu_unite*commande.quantite) from produit,commande where produit.Descriptif = Commande.Descriptif group by produit.Descriptif;

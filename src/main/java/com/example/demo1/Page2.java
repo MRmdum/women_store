@@ -86,22 +86,27 @@ public class Page2 extends Application {
         boolean allIsNum = new GeneralUtils().isInt(taille) && new GeneralUtils().isInt(stock) && new GeneralUtils().isDouble(prix);
 
         if (descriptif!= null && type_produit != null && prix!=null && (taille!=null || type_produit == "Accessoire") && stock !=null && allIsNum){
-            if(type_produit == "Accessoire"){
-                taille = "null";
-            }
-            try{
-                Produit produit = new GeneralUtils().checkProduit(type_produit.toString(), descriptif, Double.parseDouble(prix), stock, Integer.parseInt(taille));
+            if(Integer.parseInt(stock) >0){
+                if(type_produit == "Accessoire"){
+                    taille = "null";
+                }
+                try{
+                    Produit produit = new GeneralUtils().checkProduit(type_produit.toString(), descriptif, Double.parseDouble(prix), stock, Integer.parseInt(taille));
 
 
-            new MysqlInterface().WriteData("Insert into produit(Categorie,Taille, Prix, Stock,Descriptif) values ('"
-                    + type_produit + "',"+taille+","+prix+","+stock+",'"+descriptif+"');");
+                new MysqlInterface().WriteData("Insert into produit(Categorie,Taille, Prix, Stock,Descriptif) values ('"
+                        + type_produit + "',"+taille+","+prix+","+stock+",'"+descriptif+"');");
 
-            Alert a = new Alert(Alert.AlertType.INFORMATION,"Stock has been added !");
-            a.show();
+                Alert a = new Alert(Alert.AlertType.INFORMATION,"Stock has been added !");
+                a.show();
 
-            switchToSecondePage();
-            }catch(Exception e){
-                Alert a = new Alert(Alert.AlertType.WARNING, e.toString());
+                switchToSecondePage();
+                }catch(Exception e){
+                    Alert a = new Alert(Alert.AlertType.WARNING, e.toString());
+                    a.show();
+                }
+            }else {
+                Alert a = new Alert(Alert.AlertType.WARNING,"Champs mal remplis");
                 a.show();
             }
         }

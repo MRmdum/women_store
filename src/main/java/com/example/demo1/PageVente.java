@@ -56,37 +56,42 @@ public class PageVente extends Application {
             var stock = row_val[4];
 
             if(stock != null && !num_vend.isEmpty() && new GeneralUtils().isInt(num_vend)){
-                if (Integer.parseInt(stock) >= Integer.parseInt(num_vend)) {
+                if(Integer.parseInt(num_vend) >0){
+                    if (Integer.parseInt(stock) >= Integer.parseInt(num_vend)) {
 
-                    var type_produit = row_val[1];
-                    var descriptif = row_val[5];
-                    var prix = Double.parseDouble(row_val[2]);
-                    var taille = Integer.parseInt(row_val[3]);
+                        var type_produit = row_val[1];
+                        var descriptif = row_val[5];
+                        var prix = Double.parseDouble(row_val[2]);
+                        var taille = Integer.parseInt(row_val[3]);
 
-                    var remise = 0.0;
+                        var remise = 0.0;
 
-                    try {
-                        if (discount.isSelected()) {
-                            var produit = new GeneralUtils().checkProduit(type_produit,descriptif, prix, num_vend,taille);
-                            produit.remise();
-                            remise = -(produit.Prix() - prix);
-                            prix = produit.Prix();
+                        try {
+                            if (discount.isSelected()) {
+                                var produit = new GeneralUtils().checkProduit(type_produit,descriptif, prix, num_vend,taille);
+                                produit.remise();
+                                remise = -(produit.Prix() - prix);
+                                prix = produit.Prix();
+                            }
+                        }catch(Exception e){
+                            Alert a = new Alert(Alert.AlertType.WARNING, e.toString());
+                            a.show();
                         }
-                    }catch(Exception e){
-                        Alert a = new Alert(Alert.AlertType.WARNING, e.toString());
+
+                        new MysqlInterface().WriteData("Update produit set Stock = Stock-"+num_vend+" where Id =" + row_val[0] + ";");
+                        new MysqlInterface().WriteData("Insert into Commande(Type_produit,reduc_appliquee,Id_client, quantite, Descriptif,prix_vendu_unite)"+
+                                " values ('"+type_produit+"',"+remise+","+1+
+                                ","+num_vend+",'"+ descriptif + "',"+prix+");");
+                        System.out.println(remise);
+                        tableView.getItems().clear();
+                        tableView.getColumns().clear();
+                        initialize();
+                    } else {
+                        Alert a = new Alert(Alert.AlertType.WARNING, "Not enough stock to sell item");
                         a.show();
                     }
-
-                    new MysqlInterface().WriteData("Update produit set Stock = Stock-"+num_vend+" where Id =" + row_val[0] + ";");
-                    new MysqlInterface().WriteData("Insert into Commande(Type_produit,reduc_appliquee,Id_client, quantite, Descriptif,prix_vendu_unite)"+
-                            " values ('"+type_produit+"',"+remise+","+1+
-                            ","+num_vend+",'"+ descriptif + "',"+prix+");");
-                    System.out.println(remise);
-                    tableView.getItems().clear();
-                    tableView.getColumns().clear();
-                    initialize();
-                } else {
-                    Alert a = new Alert(Alert.AlertType.WARNING, "Not enough stock to sell item");
+                }else {
+                    Alert a = new Alert(Alert.AlertType.WARNING, "Champs mal rempli");
                     a.show();
                 }
             }else {
@@ -108,30 +113,34 @@ public class PageVente extends Application {
         boolean allIsNum = new GeneralUtils().isInt(taille) && new GeneralUtils().isInt(stock) && new GeneralUtils().isDouble(prix);
 
         if (type_produit != null && prix!=null && (taille!=null || type_produit == "Accessoire") && stock !=null && allIsNum){
+            if (Integer.parseInt(stock) > 0) {
 
-            try {
-                var descriptif = descriptif_field.getText();
+                try {
+                    var descriptif = descriptif_field.getText();
 
-                Produit produit = new GeneralUtils().checkProduit(type_produit.toString(), descriptif, Double.parseDouble(prix), stock, Integer.parseInt(taille));
+                    Produit produit = new GeneralUtils().checkProduit(type_produit.toString(), descriptif, Double.parseDouble(prix), stock, Integer.parseInt(taille));
 
-                String cmd3 = "Select Id from produit where Descriptif = '" + descriptif + "' and taille=" + taille + ";";
-                TableView temp3 = new MysqlInterface().ReadData(cmd3);
-                var retour_id = temp3.getItems().toArray();
+                    String cmd3 = "Select Id from produit where Descriptif = '" + descriptif + "' and taille=" + taille + ";";
+                    TableView temp3 = new MysqlInterface().ReadData(cmd3);
+                    var retour_id = temp3.getItems().toArray();
 
-                var id_produit = retour_id.length == 0 ? "" : retour_id[0].toString().replace("[", "").replace("]", "");
+                    var id_produit = retour_id.length == 0 ? "" : retour_id[0].toString().replace("[", "").replace("]", "");
 
-                if (!id_produit.isEmpty()) {
-                    String cmd = "Update produit set Stock = Stock+" + stock + " where Id =" + id_produit + ";";
-                    new MysqlInterface().WriteData(cmd);
-                } else {
-                    new MysqlInterface().WriteData("Insert into produit(Descriptif,Categorie,Taille, Prix, Stock) values ('" + descriptif + "','"
-                            + type_produit + "'," + taille + "," + prix + "," + stock + ");");
+                    if (!id_produit.isEmpty()) {
+                        String cmd = "Update produit set Stock = Stock+" + stock + " where Id =" + id_produit + ";";
+                        new MysqlInterface().WriteData(cmd);
+                    } else {
+                        new MysqlInterface().WriteData("Insert into produit(Descriptif,Categorie,Taille, Prix, Stock) values ('" + descriptif + "','"
+                                + type_produit + "'," + taille + "," + prix + "," + stock + ");");
+                    }
+                    new MysqlInterface().WriteData("Insert into Comande(Type_produit,Id_client, quantite, Descriptif,prix_vendu_unite) values ('" + type_produit + "'," + 1 +
+                            "," + stock + ",'" + descriptif + "'," + (-Integer.parseInt(prix)) + ");");
+                } catch (Exception e) {
+                    Alert a = new Alert(Alert.AlertType.WARNING, e.toString());
+                    a.show();
                 }
-                new MysqlInterface().WriteData("Insert into Comande(Type_produit,Id_client, quantite, Descriptif,prix_vendu_unite) values ('" + type_produit + "'," + 1 +
-                        "," + stock + ",'" + descriptif + "'," + (-Integer.parseInt(prix)) + ");");
-            }
-            catch(Exception e){
-                Alert a = new Alert(Alert.AlertType.WARNING, e.toString());
+            }else {
+                Alert a = new Alert(Alert.AlertType.WARNING, "Champ mal rempli");
                 a.show();
             }
         }else {

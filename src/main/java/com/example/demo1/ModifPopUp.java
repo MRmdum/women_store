@@ -39,24 +39,29 @@ public class ModifPopUp {
         boolean allIsNum = new GeneralUtils().isInt(taille) && new GeneralUtils().isInt(stock) && new GeneralUtils().isDouble(prix);
 
         if (type_produit != null && prix!=null && (taille!=null || type_produit == "Accessoire") && stock !=null && allIsNum){
-            if(type_produit == "Accessoire"){
-                taille = "null";
-            }
-            try{
-                Produit produit = new GeneralUtils().checkProduit(type_produit.toString(), desc, Double.parseDouble(prix), stock, Integer.parseInt(taille));
+            if(Integer.parseInt(stock)>0){
+                if(type_produit == "Accessoire"){
+                    taille = "null";
+                }
+                try{
+                    Produit produit = new GeneralUtils().checkProduit(type_produit.toString(), desc, Double.parseDouble(prix), stock, Integer.parseInt(taille));
 
 
-                System.out.println(row_id);
-                new MysqlInterface().WriteData("Update produit set Categorie ='"
-                        + type_produit + "',Prix="+prix+",Stock="+stock+",Taille="+taille+",Descriptif='"+desc+"' where Id ="+row_id+";");
+                    System.out.println(row_id);
+                    new MysqlInterface().WriteData("Update produit set Categorie ='"
+                            + type_produit + "',Prix="+prix+",Stock="+stock+",Taille="+taille+",Descriptif='"+desc+"' where Id ="+row_id+";");
 
-                Alert a = new Alert(Alert.AlertType.INFORMATION,"Stock has been added !");
-                a.show();
-                stage.close();
-                switchToSecondePage();
+                    Alert a = new Alert(Alert.AlertType.INFORMATION,"Stock has been added !");
+                    a.show();
+                    stage.close();
+                    switchToSecondePage();
 
-            }catch(Exception e){
-                Alert a = new Alert(Alert.AlertType.WARNING, e.toString());
+                }catch(Exception e){
+                    Alert a = new Alert(Alert.AlertType.WARNING, e.toString());
+                    a.show();
+                }
+            }else {
+                Alert a = new Alert(Alert.AlertType.WARNING,"Champs mal remplis");
                 a.show();
             }
         }
