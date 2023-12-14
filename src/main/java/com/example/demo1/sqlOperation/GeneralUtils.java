@@ -1,5 +1,9 @@
 package com.example.demo1.sqlOperation;
 
+import com.example.demo1.Vetements.Accessoire;
+import com.example.demo1.Vetements.Chaussure;
+import com.example.demo1.Vetements.Produit;
+import com.example.demo1.Vetements.Vetement;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
@@ -36,9 +40,7 @@ public class GeneralUtils {
         TableView.TableViewSelectionModel selectionModel = tableview.getSelectionModel();
         ObservableList selectedCells = selectionModel.getSelectedCells();
 
-//        System.out.println(selectedCells);
-
-        if (!selectedCells.isEmpty()) {
+        if (selectedCells.toArray().length > 0) {
 
             TablePosition tablePosition = (TablePosition) selectedCells.get(0);
 
@@ -52,7 +54,17 @@ public class GeneralUtils {
                 return row.toString().replace("[","").replace("]","").replace(" ","").split(",");
             }
         }
-        throw new Exception("Erreur Selection row selected:"+tableview.getSelectionModel().getSelectedCells());
+        throw new Exception("Aucune rangé sélectionnée");
+    }
+    public Produit checkProduit(String type_produit, String descriptif, Double prix, String num_vend, int taille) throws IllegalArgumentException{
+
+        var produit = switch (type_produit) {
+            case "Accessoire" -> new Accessoire(descriptif, prix, Integer.parseInt(num_vend));
+            case "Chaussure" -> new Chaussure(descriptif, prix, Integer.parseInt(num_vend), taille);
+            case "Vêtement" -> new Vetement(descriptif, prix, Integer.parseInt(num_vend), taille);
+            default -> new Produit("", 1, 1);
+        };
+        return  produit;
     }
 
 }

@@ -40,6 +40,7 @@ public class PageVente extends Application {
         choiceBox1.setItems(FXCollections.observableArrayList(type_produit));
 
         tableView.getItems().clear();
+        tableView.getColumns().clear();
         String cmd = "Select * from produit";
         TableView temp = new MysqlInterface().ReadData(cmd);
         tableView.getColumns().addAll(temp.getColumns());
@@ -62,28 +63,20 @@ public class PageVente extends Application {
                 var prix = Double.parseDouble(row_val[2]);
                 var taille = Integer.parseInt(row_val[3]);
 
-                var produit = new Produit("",1,1);
                 var remise = 0.0;
 
-                if(discount.isSelected()){
-                    switch (type_produit){
-                        case "Accessoire":
-                            produit = new Accessoire(descriptif,prix,Integer.parseInt(num_vend));
-                            break;
+                try {
+                    if (discount.isSelected()) {
 
-                        case "Chaussure":
-                            produit = new Chaussure(descriptif,prix,Integer.parseInt(num_vend),taille);
-                            break;
-
-                        case "Vêtement":
-                            produit = new Vetement(descriptif,prix,Integer.parseInt(num_vend),taille);
-                            break;
+                        var produit = new GeneralUtils().checkProduit(type_produit,descriptif, prix, num_vend,taille);
+                        produit.remise();
+                        remise = -(produit.Prix() - prix);
+                        prix = produit.Prix();
                     }
-                    produit.remise();
-                    remise = -(produit.Prix()-prix);
-                    prix = produit.Prix();
+                }catch(Exception e){
+                    Alert a = new Alert(Alert.AlertType.WARNING, e.toString());
+                    a.show();
                 }
-
 
                 new MysqlInterface().WriteData("Update produit set Stock = Stock-"+num_vend+" where Id =" + row_val[0] + ";");
                 new MysqlInterface().WriteData("Insert into Commande(Type_produit,reduc_appliquee,Id_client, quantite, Descriptif,prix_vendu_unite)"+
@@ -110,23 +103,31 @@ public class PageVente extends Application {
 
         if (type_produit != null && prix!=null && (taille!=null || type_produit == "Accessoire") && stock !=null && allIsNum){
 
-            var descriptif = descriptif_field.getText();
-            String cmd3 = "Select Id from produit where Descriptif = '"+descriptif+"' and taille="+taille+";";
-            TableView temp3 = new MysqlInterface().ReadData(cmd3);
-            var retour_id = temp3.getItems().toArray();
+            try {
+                var descriptif = descriptif_field.getText();
 
-            var id_produit = retour_id.length == 0? "" : retour_id[0].toString().replace("[","").replace("]","");
+                Produit produit = new GeneralUtils().checkProduit(type_produit.toString(), descriptif, Double.parseDouble(prix), stock, Integer.parseInt(taille));
 
-            if(!id_produit.isEmpty()){
-                String cmd = "Update produit set Stock = Stock+"+stock+" where Id ="+id_produit+";";
-                new MysqlInterface().WriteData(cmd);
+                String cmd3 = "Select Id from produit where Descriptif = '" + descriptif + "' and taille=" + taille + ";";
+                TableView temp3 = new MysqlInterface().ReadData(cmd3);
+                var retour_id = temp3.getItems().toArray();
+
+                var id_produit = retour_id.length == 0 ? "" : retour_id[0].toString().replace("[", "").replace("]", "");
+
+                if (!id_produit.isEmpty()) {
+                    String cmd = "Update produit set Stock = Stock+" + stock + " where Id =" + id_produit + ";";
+                    new MysqlInterface().WriteData(cmd);
+                } else {
+                    new MysqlInterface().WriteData("Insert into produit(Descriptif,Categorie,Taille, Prix, Stock) values ('" + descriptif + "','"
+                            + type_produit + "'," + taille + "," + prix + "," + stock + ");");
+                }
+                new MysqlInterface().WriteData("Insert into Comande(Type_produit,Id_client, quantite, Descriptif,prix_vendu_unite) values ('" + type_produit + "'," + 1 +
+                        "," + stock + ",'" + descriptif + "'," + (-Integer.parseInt(prix)) + ");");
             }
-            else {
-                new MysqlInterface().WriteData("Insert into produit(Descriptif,Categorie,Taille, Prix, Stock) values ('"+descriptif+"','"
-                        + type_produit + "',"+taille+","+prix+","+stock+");");
+            catch(Exception e){
+                Alert a = new Alert(Alert.AlertType.WARNING, e.toString());
+                a.show();
             }
-            new MysqlInterface().WriteData("Insert into Comande(Type_produit,Id_client, quantite, Descriptif,prix_vendu_unite) values ('"+type_produit+"',"+1+
-                    ","+stock+",'"+ descriptif + "',"+(-Integer.parseInt(prix))+");");
         }
 
         initialize();
@@ -144,6 +145,6 @@ public class PageVente extends Application {
     }
     @FXML
     private void switchToVente() throws IOException {
-        HelloApplication.setRoot("pagevente-view");
+            HelloApplication.setRoot("pagevente-view");
     }
 }

@@ -96,4 +96,3 @@ Insert into client(nom_client,prenom_client,telephone_client) values
 select * from client;
 select * from produit;
 select * from commande;
-Insert into Commande(Type_produit,reduc_appliquee,Id_client, quantite, Descriptif,prix_vendu_unite) values ('Chaussure',3.3999999999999986,1,1,'aled',12);

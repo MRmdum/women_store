@@ -20,20 +20,24 @@ public class HelloController {
     protected void initialize(){
 
         client_table.getItems().clear();
+        client_table.getColumns().clear();
+
         commande_table.getItems().clear();
+        commande_table.getColumns().clear();
 
-        String cmd1 = "Select * from commande";
 
+        String cmd1 = "Select * from commande;";
 
         TableView temp = new MysqlInterface().ReadData(cmd1);
         commande_table.getColumns().addAll(temp.getColumns());
         commande_table.setItems(temp.getItems());
         commande_table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-        String cmd2 = "Select * from commande";
-
-        client_table.getColumns().addAll(temp.getColumns());
-        client_table.setItems(temp.getItems());
+        String cmd2 = "select Commande.Type_produit,produit.Descriptif,sum(commande.prix_vendu_unite*commande.quantite) as totals_recette"+
+                " from produit,commande where produit.Descriptif = Commande.Descriptif group by produit.Descriptif;";
+        TableView temp2 = new MysqlInterface().ReadData(cmd2);
+        client_table.getColumns().addAll(temp2.getColumns());
+        client_table.setItems(temp2.getItems());
         client_table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
         String cmd3 = "Select sum(col1) from (Select sum(prix_vendu_unite)*quantite as col1 from commande where prix_vendu_unite>0 group by Id_commande) as retour;";

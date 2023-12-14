@@ -66,11 +66,11 @@ public class Page2 extends Application {
         HelloApplication.setRoot("page2-view");
     }
     @FXML
-    private void switchToVente() throws IOException {
+    private void switchToMain() throws IOException {
         HelloApplication.setRoot("hello-view");
     }
     @FXML
-    private void switchToMain() throws IOException {
+    private void switchToVente() throws IOException {
         HelloApplication.setRoot("pagevente-view");
     }
 
@@ -88,8 +88,8 @@ public class Page2 extends Application {
             if(type_produit == "Accessoire"){
                 taille = "null";
             }
-            new MysqlInterface().WriteData("Insert into produit(Categorie,Taille, Prix, Stock) values ('"
-                    + type_produit + "',"+taille+","+prix+","+stock+");");
+            new MysqlInterface().WriteData("Insert into produit(Categorie,Taille, Prix, Stock,Descriptif) values ('"
+                    + type_produit + "',"+taille+","+prix+","+stock+",'"+descriptif+"');");
 
             Alert a = new Alert(Alert.AlertType.INFORMATION,"Stock has been added !");
             a.show();
@@ -116,27 +116,37 @@ public class Page2 extends Application {
     }
     @FXML
     private void SupprimeItem() throws Exception{
-        var row_val = new GeneralUtils().getRowSelected2StrArray(tableview);
-        var stock = row_val[4];
-        if(stock != null){
-            if (Integer.parseInt(stock) > 0) {
-                new MysqlInterface().WriteData("Update produit set Stock = Stock-1 where Id =" + row_val[0] + ";");
-                switchToSecondePage();
-            } else {
-                Alert a = new Alert(Alert.AlertType.WARNING, "Not enough stock to delete item");
-                a.show();
+        try{
+            var row_val = new GeneralUtils().getRowSelected2StrArray(tableview);
+            var stock = row_val[4];
+            if(stock != null){
+                if (Integer.parseInt(stock) > 0) {
+                    new MysqlInterface().WriteData("Update produit set Stock = Stock-1 where Id =" + row_val[0] + ";");
+                    switchToSecondePage();
+                } else {
+                    Alert a = new Alert(Alert.AlertType.WARNING, "Not enough stock to delete item");
+                    a.show();
+                }
             }
+        }
+        catch (Exception e){
+            Alert a = new Alert(Alert.AlertType.WARNING,e+": No item selected");
+            a.show();
         }
     }
     @FXML
     private void AddItem() throws Exception{
-        var row_val = new GeneralUtils().getRowSelected2StrArray(tableview);
+        try{
+             var row_val = new GeneralUtils().getRowSelected2StrArray(tableview);
 
-        var stock = row_val[4];
-
-        if(stock != null){
-            new MysqlInterface().WriteData("Update produit set Stock = Stock+1 where Id =" + row_val[0] + ";");
-            switchToSecondePage();
+            if(row_val.length !=0){
+                new MysqlInterface().WriteData("Update produit set Stock = Stock+1 where Id =" + row_val[0] + ";");
+                switchToSecondePage();
+            }
+        }
+        catch(Exception e){
+            Alert a = new Alert(Alert.AlertType.WARNING,e+": No item selected");
+            a.show();
         }
     }
     @FXML
