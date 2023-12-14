@@ -76,3 +76,6 @@ insert into produit (Categorie,Prix,Taille,Stock,Descriptif) values
 ('Chaussure',20,40,20,'Shoes1'),
 ('Chaussure',10,-1,20,'Accessory1');
 
+insert into client (nom_client,prenom_client,telephone_client) values
+('women','shop','0495459723');
+
