@@ -120,7 +120,7 @@ public class Page2 extends Application {
                 Alert a = new Alert(Alert.AlertType.INFORMATION,"Row has been deleted");
                 a.show();
 
-                initialize();
+                switchToSecondePage();
             }
         }
         catch (Exception e){

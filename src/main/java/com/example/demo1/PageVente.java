@@ -51,47 +51,50 @@ public class PageVente extends Application {
     public void vendre() throws Exception {
 
         var num_vend = vendre_field.getText();
+        try{
+            var row_val = new GeneralUtils().getRowSelected2StrArray(tableView);
+            var stock = row_val[4];
 
-        var row_val = new GeneralUtils().getRowSelected2StrArray(tableView);
-        var stock = row_val[4];
+            if(stock != null && !num_vend.isEmpty() && new GeneralUtils().isInt(num_vend)){
+                if (Integer.parseInt(stock) >= Integer.parseInt(num_vend)) {
 
-        if(stock != null && !num_vend.isEmpty() && new GeneralUtils().isInt(num_vend)){
-            if (Integer.parseInt(stock) > 0) {
+                    var type_produit = row_val[1];
+                    var descriptif = row_val[5];
+                    var prix = Double.parseDouble(row_val[2]);
+                    var taille = Integer.parseInt(row_val[3]);
 
-                var type_produit = row_val[1];
-                var descriptif = row_val[5];
-                var prix = Double.parseDouble(row_val[2]);
-                var taille = Integer.parseInt(row_val[3]);
+                    var remise = 0.0;
 
-                var remise = 0.0;
-
-                try {
-                    if (discount.isSelected()) {
-
-                        var produit = new GeneralUtils().checkProduit(type_produit,descriptif, prix, num_vend,taille);
-                        produit.remise();
-                        remise = -(produit.Prix() - prix);
-                        prix = produit.Prix();
+                    try {
+                        if (discount.isSelected()) {
+                            var produit = new GeneralUtils().checkProduit(type_produit,descriptif, prix, num_vend,taille);
+                            produit.remise();
+                            remise = -(produit.Prix() - prix);
+                            prix = produit.Prix();
+                        }
+                    }catch(Exception e){
+                        Alert a = new Alert(Alert.AlertType.WARNING, e.toString());
+                        a.show();
                     }
-                }catch(Exception e){
-                    Alert a = new Alert(Alert.AlertType.WARNING, e.toString());
+
+                    new MysqlInterface().WriteData("Update produit set Stock = Stock-"+num_vend+" where Id =" + row_val[0] + ";");
+                    new MysqlInterface().WriteData("Insert into Commande(Type_produit,reduc_appliquee,Id_client, quantite, Descriptif,prix_vendu_unite)"+
+                            " values ('"+type_produit+"',"+remise+","+1+
+                            ","+num_vend+",'"+ descriptif + "',"+prix+");");
+                    System.out.println(remise);
+                    tableView.getItems().clear();
+                    tableView.getColumns().clear();
+                    initialize();
+                } else {
+                    Alert a = new Alert(Alert.AlertType.WARNING, "Not enough stock to sell item");
                     a.show();
                 }
-
-                new MysqlInterface().WriteData("Update produit set Stock = Stock-"+num_vend+" where Id =" + row_val[0] + ";");
-                new MysqlInterface().WriteData("Insert into Commande(Type_produit,reduc_appliquee,Id_client, quantite, Descriptif,prix_vendu_unite)"+
-                        " values ('"+type_produit+"',"+remise+","+1+
-                        ","+num_vend+",'"+ descriptif + "',"+prix+");");
-                System.out.println(remise);
-                tableView.getItems().clear();
-                tableView.getColumns().clear();
-                initialize();
-            } else {
-                Alert a = new Alert(Alert.AlertType.WARNING, "Not enough stock to sell item");
+            }else {
+                Alert a = new Alert(Alert.AlertType.WARNING, "Champs mal rempli");
                 a.show();
             }
-        }else {
-            Alert a = new Alert(Alert.AlertType.WARNING, "Champs mal rempli");
+        }catch (Exception e){
+            Alert a = new Alert(Alert.AlertType.WARNING,e+": No item selected");
             a.show();
         }
 
