@@ -1,5 +1,6 @@
 package com.example.demo1;
 
+import com.example.demo1.Vetements.Produit;
 import com.example.demo1.sqlOperation.GeneralUtils;
 import com.example.demo1.sqlOperation.MysqlInterface;
 import javafx.application.Application;
@@ -88,6 +89,10 @@ public class Page2 extends Application {
             if(type_produit == "Accessoire"){
                 taille = "null";
             }
+            try{
+                Produit produit = new GeneralUtils().checkProduit(type_produit.toString(), descriptif, Double.parseDouble(prix), stock, Integer.parseInt(taille));
+
+
             new MysqlInterface().WriteData("Insert into produit(Categorie,Taille, Prix, Stock,Descriptif) values ('"
                     + type_produit + "',"+taille+","+prix+","+stock+",'"+descriptif+"');");
 
@@ -95,6 +100,10 @@ public class Page2 extends Application {
             a.show();
 
             switchToSecondePage();
+            }catch(Exception e){
+                Alert a = new Alert(Alert.AlertType.WARNING, e.toString());
+                a.show();
+            }
         }
         else {
             Alert a = new Alert(Alert.AlertType.WARNING,"Champs mal remplis");
@@ -103,15 +112,20 @@ public class Page2 extends Application {
     }
     @FXML
     private void SupprimerStock() throws  Exception{
+        try{
+            var row_val = new GeneralUtils().getRowSelected2StrArray(tableview);
+            if(row_val != null) {
+                new MysqlInterface().WriteData("Delete from produit where Id =" + row_val[0] + ";");
 
-        var row_val = new GeneralUtils().getRowSelected2StrArray(tableview);
-        if(row_val != null) {
-            new MysqlInterface().WriteData("Delete from produit where Id =" + row_val[0] + ";");
+                Alert a = new Alert(Alert.AlertType.INFORMATION,"Row has been deleted");
+                a.show();
 
-            Alert a = new Alert(Alert.AlertType.INFORMATION,"Row has been deleted");
+                initialize();
+            }
+        }
+        catch (Exception e){
+            Alert a = new Alert(Alert.AlertType.WARNING,e+": No item selected");
             a.show();
-
-            initialize();
         }
     }
     @FXML
@@ -167,21 +181,24 @@ public class Page2 extends Application {
     }
     @FXML
     private void Modifier(ActionEvent event) throws Exception {
+        try{
         var row_val = new GeneralUtils().getRowSelected2StrArray(tableview);
-        if(!row_val[0].isEmpty()) {
-            Scene scene = new Scene(loadFXML("modifpopup-view"), 400, 200);
-            Stage stage = new Stage();
-            stage.setUserData(row_val[0]);
+            if(!row_val[0].isEmpty()) {
+                Scene scene = new Scene(loadFXML("modifpopup-view"), 400, 200);
+                Stage stage = new Stage();
+                stage.setUserData(row_val[0]);
 
-            Stage current_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Stage current_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initOwner(current_stage);
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.initOwner(current_stage);
 
-            stage.setScene(scene);
-            stage.show();
+                stage.setScene(scene);
+                stage.show();
+            }
+        }catch (Exception e){
+            Alert a = new Alert(Alert.AlertType.WARNING,e+": No item selected");
+            a.show();
         }
-
     }
-
 }

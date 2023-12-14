@@ -55,7 +55,7 @@ public class PageVente extends Application {
         var row_val = new GeneralUtils().getRowSelected2StrArray(tableView);
         var stock = row_val[4];
 
-        if(stock != null && !num_vend.isEmpty()){
+        if(stock != null && !num_vend.isEmpty() && new GeneralUtils().isInt(num_vend)){
             if (Integer.parseInt(stock) > 0) {
 
                 var type_produit = row_val[1];
@@ -87,9 +87,12 @@ public class PageVente extends Application {
                 tableView.getColumns().clear();
                 initialize();
             } else {
-                Alert a = new Alert(Alert.AlertType.WARNING, "Not enough stock to delete item");
+                Alert a = new Alert(Alert.AlertType.WARNING, "Not enough stock to sell item");
                 a.show();
             }
+        }else {
+            Alert a = new Alert(Alert.AlertType.WARNING, "Champs mal rempli");
+            a.show();
         }
 
     }
@@ -128,6 +131,9 @@ public class PageVente extends Application {
                 Alert a = new Alert(Alert.AlertType.WARNING, e.toString());
                 a.show();
             }
+        }else {
+            Alert a = new Alert(Alert.AlertType.WARNING, "Champ mal rempli");
+            a.show();
         }
 
         initialize();

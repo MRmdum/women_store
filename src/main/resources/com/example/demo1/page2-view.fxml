@@ -45,7 +45,7 @@
                   <Label layoutX="155.0" layoutY="79.0" prefHeight="18.0" prefWidth="39.0" text="Filtres" />
                   <Label layoutX="313.0" layoutY="74.0" prefHeight="27.0" prefWidth="34.0" text="Taille" />
                   <ComboBox fx:id="comboBox1" layoutX="194.0" layoutY="74.0" onAction="#filterView" prefHeight="26.0" prefWidth="96.0" />
-                  <Button layoutX="706.0" layoutY="228.0" mnemonicParsing="false" onAction="#Modifier" text="Button" />
+                  <Button layoutX="706.0" layoutY="228.0" mnemonicParsing="false" onAction="#Modifier" text="Modifier stock" />
                   <TextField fx:id="descriptif_field" layoutX="236.0" layoutY="21.0" prefHeight="26.0" prefWidth="166.0" />
                   <Label layoutX="176.0" layoutY="26.0" prefHeight="18.0" prefWidth="54.0" text="Descriptif" />
                </children>
