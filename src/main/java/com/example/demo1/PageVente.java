@@ -133,7 +133,7 @@ public class PageVente extends Application {
                         new MysqlInterface().WriteData("Insert into produit(Descriptif,Categorie,Taille, Prix, Stock) values ('" + descriptif + "','"
                                 + type_produit + "'," + taille + "," + prix + "," + stock + ");");
                     }
-                    new MysqlInterface().WriteData("Insert into Comande(Type_produit,Id_client, quantite, Descriptif,prix_vendu_unite) values ('" + type_produit + "'," + 1 +
+                    new MysqlInterface().WriteData("Insert into Commande(Type_produit,Id_client, quantite, Descriptif,prix_vendu_unite) values ('" + type_produit + "'," + 1 +
                             "," + stock + ",'" + descriptif + "'," + (-Integer.parseInt(prix)) + ");");
                 } catch (Exception e) {
                     Alert a = new Alert(Alert.AlertType.WARNING, e.toString());

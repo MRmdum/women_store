@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f0a22eb4-4d8b-44f6-9d88-77d5e5a330a7" name="Changes" comment="check negatif">
+    <list default="true" id="f0a22eb4-4d8b-44f6-9d88-77d5e5a330a7" name="Changes" comment="mode demo">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -94,7 +94,7 @@
       <workItem from="1702463432940" duration="18171000" />
       <workItem from="1702539568569" duration="13997000" />
       <workItem from="1702585043217" duration="921000" />
-      <workItem from="1702586740866" duration="305000" />
+      <workItem from="1702586740866" duration="1116000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -280,7 +280,23 @@
       <option name="project" value="LOCAL" />
       <updated>1702585905904</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="mode demo">
+      <option name="closed" value="true" />
+      <created>1702587143611</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1702587143611</updated>
+    </task>
+    <task id="LOCAL-00025" summary="mode demo">
+      <option name="closed" value="true" />
+      <created>1702587254984</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1702587254984</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -315,7 +331,8 @@
     <MESSAGE value="error handling v3 + correctif" />
     <MESSAGE value="derniere MAJ" />
     <MESSAGE value="check negatif" />
-    <option name="LAST_COMMIT_MESSAGE" value="check negatif" />
+    <MESSAGE value="mode demo" />
+    <option name="LAST_COMMIT_MESSAGE" value="mode demo" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
